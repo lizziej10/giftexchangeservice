@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PairControllerTest {
@@ -23,24 +22,24 @@ public class PairControllerTest {
 
     @Test
     public void testPostBuildPairs() {
-        when(participantListBuilderMock.buildPairs(anyList())).thenReturn(new HashMap<String, String>());
+        when(participantListBuilderMock.buildPairs(anyMap())).thenReturn(new HashMap<String, String>());
 
-        tester.createPairs(new ArrayList<String>());
+        tester.createPairs(new HashMap<String, String>());
 
-        verify(participantListBuilderMock).buildPairs(anyList());
+        verify(participantListBuilderMock).buildPairs(anyMap());
     }
 
     @Test
     public void testPostBuildPairsError() {
-        when(participantListBuilderMock.buildPairs(anyList())).thenThrow(new RuntimeException("No pairs exception."));
+        when(participantListBuilderMock.buildPairs(anyMap())).thenThrow(new RuntimeException("No pairs exception."));
 
         try {
-            tester.createPairs(new ArrayList<String>());
+            tester.createPairs(new HashMap<String, String>());
         } catch(RuntimeException e) {
             assertTrue(e.getMessage().equals("No pairs exception."));
         }
 
-        verify(participantListBuilderMock).buildPairs(anyList());
+        verify(participantListBuilderMock).buildPairs(anyMap());
     }
 }
 

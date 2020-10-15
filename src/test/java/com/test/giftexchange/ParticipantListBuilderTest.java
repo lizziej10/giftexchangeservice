@@ -3,11 +3,9 @@ package com.test.giftexchange;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.apache.tomcat.util.digester.ArrayStack;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ParticipantListBuilderTest {
@@ -16,11 +14,11 @@ public class ParticipantListBuilderTest {
 
         ParticipantListBuilder tester = new ParticipantListBuilder(); // MyClass is tested
 
-        List<String> participants = new ArrayList<String>();
-        participants.add("name_1");
-        participants.add("name_2");
-        participants.add("name_3");
-        participants.add("name_4");
+        Map<String, String> participants = new HashMap<String, String>();
+        participants.put("name_1", "family_1");
+        participants.put("name_2", "family_2");
+        participants.put("name_3", "family_1");
+        participants.put("name_4", "family_2");
 
         Map<String, String> results = tester.buildPairs(participants);
 
@@ -36,10 +34,10 @@ public class ParticipantListBuilderTest {
 
         ParticipantListBuilder tester = new ParticipantListBuilder(); // MyClass is tested
 
-        List<String> participants = new ArrayList<String>();
-        participants.add("name_1");
-        participants.add("name_2");
-        participants.add("name_1");
+        Map<String, String> participants = new HashMap<String, String>();
+        participants.put("name_1", "family_1");
+        participants.put("name_2", "family_2");
+        participants.put("name_3", "family_1");
 
         try {
             Map<String, String> results = tester.buildPairs(participants);
@@ -54,7 +52,7 @@ public class ParticipantListBuilderTest {
 
         ParticipantListBuilder tester = new ParticipantListBuilder(); // MyClass is tested
 
-        List<String> participants = new ArrayStack<String>();
+        Map<String, String> participants = new HashMap<String, String>();
 
         Map<String, String> results = tester.buildPairs(participants);
 
